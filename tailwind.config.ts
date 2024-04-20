@@ -1,4 +1,4 @@
-import type { Config } from "tailwindcss";
+import type { Config } from "tailwindcss"
 
 const config: Config = {
   content: [
@@ -9,9 +9,17 @@ const config: Config = {
   theme: {
     extend: {
       backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+          "hero": "url('/assets/hero.png')",
+          "herodots": "url('/assets/herodots.png')"
+      },
+      fontFamily: {
+        "open": "var(--font-open)",
+        "poppins": "var(--font-poppins)",
+        "bukabird": "var(--font-bb)"
+      },
+      colors: {
+        accent: "#4894E8",
+        yellow: "#FCEE21",
       },
     },
   },
