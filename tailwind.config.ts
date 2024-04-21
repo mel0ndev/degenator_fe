@@ -20,6 +20,7 @@ const config: Config = {
       colors: {
         accent: "#4894E8",
         yellow: "#FCEE21",
+        muted: "text-gray-300"
       },
     },
   },

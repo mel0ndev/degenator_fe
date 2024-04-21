@@ -75,9 +75,9 @@ export const BasicTier = ({
                     <span className="font-semi-bold italic"> {(Number(apy) / 1).toFixed(4)}% </span> 
                 </div> 
 
-                <div className="h-10 w-11/12 bg-black bg-opacity-70 outline outline-1 outline-[#66BEE8] flex justify-center items-center rounded-xl font-bold text-xl"> 
-                    <span className="pl-3"> 
-                        +{bonus}% 
+                <div className="h-10 w-11/12 bg-black bg-opacity-70 outline outline-1 outline-[#66BEE8] flex items-center rounded-xl font-bold text-xl"> 
+                    <span className="pl-5"> 
+                        100
                     </span> 
                 </div> 
 
