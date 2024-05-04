@@ -17,6 +17,7 @@ const buttonVariants = cva(
         uniswap:"bg-[#FF007A] font-poppins text-lg text-white hover:bg-[#FF007A]/80 flex items-center",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
+          socials: "bg-[#B2BEE5] p-2 hover:bg-[#B2BEE5]/80",
         stake: "rounded-xl text-black text-3xl font-bukabird bg-[radial-gradient(ellipse_at_right,_var(--tw-gradient-stops))] from-[#DEF9FA] via-[#66BEE8] to-[#4894E8] hover:from-[#DEF9FA]/80 hover:via-[#66BEE8]/80 hover:to-[#4894E8]/80",
          legendary: "rounded-xl text-black text-3xl font-bukabird bg-[radial-gradient(ellipse_at_right,_var(--tw-gradient-stops))] from-[#FFA7FE] via-[#FC67FA] to-[#FF007A] hover:from-[#FFA7FE]/80 hover:via-[#FC67FA]/80 hover:to-[#FF007A]/80",
           connectMobile:"bg-gradient-to-r from-[#66BEE8] to-[#5060FC] hover:from-[#66BEE8]/50 hover:to-[#5060FC]/50 font-poppins rounded-sm font-bold text-lg text-white flex items-center",

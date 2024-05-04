@@ -1,7 +1,9 @@
+import Image from 'next/image'; 
 import { Button } from '@/components/ui/button'; 
+import { ConnectButton } from '@rainbow-me/rainbowkit';
 
 interface IConnectWallet {
-    mobile: boolean; 
+    mobile?: boolean; 
 }
 
 export const ConnectWallet = ({mobile}: IConnectWallet) => {
@@ -9,7 +11,26 @@ export const ConnectWallet = ({mobile}: IConnectWallet) => {
         <>
             {!mobile ? (
                 <div> 
-                    hello 
+                    {/*
+                   <Image 
+                       src="/assets/connect.svg"
+                       alt="connect"
+                       width={165}
+                       height={165}
+                       className="hover:opacity-90 hover:cursor-pointer"
+                   />
+                      */}
+			<ConnectButton 
+				label="Connect"
+				 showBalance={{
+				  smallScreen: false,
+  				  largeScreen: false,
+  				}}
+				accountStatus={{
+				  smallScreen: 'avatar',
+  				  largeScreen: 'avatar',
+  				}}
+            />
                 </div> 
             ) : (
                 <div className="flex flex-col items-center p-8"> 

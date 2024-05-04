@@ -1,3 +1,4 @@
+"use client"; 
 import Image from "next/image"; 
 import {
   Card,
@@ -8,6 +9,10 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"; import { FiInfo } from "react-icons/fi";
+import { TOKEN_ADDRESS } from "@/constants/addresses";  
+import { useState, useEffect } from "react"; 
+import { useQueryClient } from '@tanstack/react-query' 
+import { useBlockNumber, useBalance } from 'wagmi' 
 
 interface IBasicTier {
     name: string; 
@@ -28,6 +33,19 @@ export const BasicTier = ({
     bonusColor,
     badgeSource
 }: IBasicTier) => {
+        
+    const queryClient = useQueryClient() 
+    const { data: balance, queryKey } = useBalance({ 
+      address: TOKEN_ADDRESS
+    })
+
+    console.log(balance); 
+    
+    useEffect(() => { 
+        queryClient.invalidateQueries({ queryKey }) 
+    }, [queryClient]) 
+
+
     return (
         <div>
             <div className="flex flex-col items-center relative"> 
@@ -43,11 +61,10 @@ export const BasicTier = ({
             <div className="flex w-full grid grid-cols-3"> 
                 <div className="flex justify-end col-span-3 m-5"> 
                     <Button size="icon"> 
-                    
                         <FiInfo 
                             size={24} 
                             color="white" 
-                            className="opacity-65 hover:opacity-90" 
+                            className="opacity-65 hover:opacity-100" 
                         />
                     </Button> 
                 </div> 
@@ -74,7 +91,8 @@ export const BasicTier = ({
                     <span className="italic text-sm text-gray-300"> Yearly Rewards: </span>
                     <span className="font-semi-bold italic"> {(Number(apy) / 1).toFixed(4)}% </span> 
                 </div> 
-
+                
+                <span className="text-sm text-gray-300"> Balance: {balance?.toString()} </span>
                 <div className="h-10 w-11/12 bg-black bg-opacity-70 outline outline-1 outline-[#66BEE8] flex items-center rounded-xl font-bold text-xl"> 
                     <span className="pl-5"> 
                         100

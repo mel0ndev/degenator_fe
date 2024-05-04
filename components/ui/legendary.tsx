@@ -27,8 +27,9 @@ export const LegendaryDegenator = ({
     bonusColor,
 }: IBasicTier) => {
 
+
     return (
-        <div className="w-full h-full p-16 flex flex-col items-center">
+        <div className={`w-full h-full p-0 lg:p-6 lg:pb-0 flex flex-col items-center justify-center`}>
             <div className="bg-gradient-to-br from-[#EEA83F] to-[#92A8EC] p-1 rounded-lg w-4/5 h-full flex flex-col items-center">
                 <Card className="bg-gradient-to-r w-full h-full from-zinc-600 to-[#14101D] bg-opacity-10 shadow-md flex flex-col items-center text-center font-poppins justify-between pl-16 pr-16">
                     <div className="flex w-full grid grid-cols-3"> 
