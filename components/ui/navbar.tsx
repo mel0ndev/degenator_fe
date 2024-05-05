@@ -1,6 +1,7 @@
 import Image from 'next/image'; 
 import { NavbarText } from '@/components/ui/navbar-text';  
 import { ConnectWallet } from '@/components/ui/connect-wallet'; 
+import { BurgerMenu } from '@/components/ui/burger-menu'; 
 
 export const Navbar = () => {
     return (
@@ -21,7 +22,7 @@ export const Navbar = () => {
             </div> 
 
             <div className="flex col-span-1 items-center justify-end pr-8 lg:hidden"> 
-                menu
+                <BurgerMenu /> 
             </div> 
 
             <div className="invisible lg:visible lg:justify-end lg:flex lg:items-center lg:col-span-3">

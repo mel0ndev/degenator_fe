@@ -22,7 +22,7 @@ const { wallets } = getDefaultWallets();
 
 const projectId = '21d43aa076a8d5a839b7102fed57c534';
 
-const config = getDefaultConfig({
+export const config = getDefaultConfig({
   appName: 'RainbowKit demo',
   projectId: projectId,
   wallets: [

@@ -1,3 +1,4 @@
+"use client"; 
 import Image from "next/image"; 
 import {
   Card,
@@ -8,6 +9,17 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"; import { FiInfo } from "react-icons/fi";
+import { LegendaryStakeButton } from "@/components/ui/legendary-stake"; 
+import { LegendaryUnstakeButton } from "@/components/ui/legendary-unstake"; 
+import { LegendaryClaimButton } from "@/components/ui/legendary-claim"; import { Input } from "@/components/ui/input"
+import { TOKEN_ADDRESS } from "@/constants/addresses";  
+import { useState, useEffect } from "react"; 
+import { formatEther, parseEther } from "viem"; 
+import { useToken } from "@/hooks/token"; 
+import { useReadContract, useAccount } from 'wagmi'
+import { useBlockNumber } from 'wagmi'; 
+import * as contracts from "@/constants/addresses"; 
+import { LEGENDARY_STAKING_ABI } from "@/constants/abi/legendaryStakingAbi"; 
 
 interface IBasicTier {
     name: string; 
@@ -26,14 +38,50 @@ export const LegendaryDegenator = ({
     unstakingPeriod,
     bonusColor,
 }: IBasicTier) => {
+    const { data: blockNumber } = useBlockNumber({ watch: true }) 
 
+    const { account, lpBalance } = useToken(); 
+
+    const [amount, setAmount] = useState(''); 
+    const [stakingBalance, setStakingBalance] = useState(0); 
+    const [stakingStart, setStakingStart] = useState(0); 
+    const [stakingEnd, setStakingEnd] = useState(0); 
+
+    const data = useReadContract({
+        address: contracts.LEGENDARY_STAKING,
+        abi: LEGENDARY_STAKING_ABI,
+        functionName: 'stakingBalances',
+        args: [account as `0x${string}`, BigInt(0)]
+    })
+
+	useEffect(() => {
+        if (data) {
+            setStakingBalance(Number(data.data?.[0])); 
+            setStakingStart(Number(data.data?.[1])); 
+            setStakingEnd(Number(data.data?.[2])); 
+        }
+
+    }, [data, blockNumber, lpBalance]); 
+
+    const renderButton = (stakingBalance: number, stakingStart: number, stakingEnd: number) => {
+        if (stakingBalance > 0 && stakingEnd === 0) {
+                //show unstake 
+                return <LegendaryUnstakeButton />
+            } else if (stakingBalance > 0 && stakingEnd > 0) {
+                //show claim
+                return <LegendaryClaimButton /> 
+            } else {
+                //show stake
+                return <LegendaryStakeButton amount={Number(parseEther(amount))} poolIndex={0} />
+            }
+    }
 
     return (
         <div className={`w-full h-full p-0 lg:p-6 lg:pb-0 flex flex-col items-center justify-center`}>
             <div className="bg-gradient-to-br from-[#EEA83F] to-[#92A8EC] p-1 rounded-lg w-4/5 h-full flex flex-col items-center">
                 <Card className="bg-gradient-to-r w-full h-full from-zinc-600 to-[#14101D] bg-opacity-10 shadow-md flex flex-col items-center text-center font-poppins justify-between pl-16 pr-16">
-                    <div className="flex w-full grid grid-cols-3"> 
-                        <div className="flex justify-end col-span-3 m-5"> 
+                    <div className="flex w-full grid grid-cols-3 shadow-2xl shadow-color-white"> 
+                        <div className="flex justify-end col-span-3 m-"> 
                             <Button size="icon"> 
                                 <FiInfo 
                                     size={24} 
@@ -68,27 +116,29 @@ export const LegendaryDegenator = ({
                             <span className="italic text-sm text-gray-300"> Yearly Rewards: </span>
                             <span className="font-semi-bold italic"> {(Number(apy) / 1).toFixed(4)}% </span> 
                         </div> 
+        
+                <Input 
+                type="text" 
+                disabled={stakingBalance > 0} 
+                    placeholder={stakingBalance ? Number(formatEther(BigInt(stakingBalance))).toFixed(4).toString() : 'Enter Amount'}
+                onChange={(e) => setAmount(e.target.value)}/>
 
-                        <div className="h-10 w-11/12 bg-black bg-opacity-70 outline outline-1 outline-[#66BEE8] flex items-center rounded-xl font-bold text-xl"> 
-                            <span className="pl-6"> 
-                                100
-                            </span> 
-                        </div> 
+                <div className="flex align-left justify-start w-full ml-14">
+                    <span className="text-xs text-gray-300"> Balance: {lpBalance ? formatEther(lpBalance).toLocaleString() : '0'} </span>
+                </div> 
 
                     </CardContent>
-                    <CardContent className="p-6 pt-0"> 
+                    <CardContent className="p-10 pb-4 pt-2"> 
                         <div className="grid grid-cols-2 grid-rows-2 text-xs"> 
-                            <span className="flex justify-start"> Current value: </span> 
-                            <span className="flex justify-end"> Value after staking:  </span> 
-                            <span className="flex justify-start"> [amount] </span>
+                            <span className="flex justify-start"> Staked Amount: </span> 
+                            <span className="flex justify-end"> Staked Value:  </span> 
+                            <span className="flex justify-start"> {stakingBalance ? Number(formatEther(stakingBalance)).toFixed(4).toLocaleString() : '0' } </span>
                             <span className="flex justify-end"> [amount] </span>
                         </div> 
                     </CardContent> 
 
                     <CardContent> 
-                        <Button variant="legendary" className="w-11/12 h-full"> 
-                            Stake
-                        </Button> 
+                        {renderButton(stakingBalance, stakingStart, stakingEnd)}
                     </CardContent> 
 
                     <CardFooter className="p-6">

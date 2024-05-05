@@ -1,22 +1,42 @@
 //abi
-import { useReadContracts } from 'wagmi'
+import { useReadContract, useAccount } from 'wagmi'
 import * as constants from "@/constants/addresses"; 
-import * as abis from "@/constants/abis"; 
-
+//import {TOKEN_ABI} from "@/constants/abis"; 
+import { TOKEN_ABI } from "@/constants/abi/tokenAbi"; 
 
 const degenatorContract = {
     address: constants.TOKEN_ADDRESS,
-    abi: abis.TOKEN_ABI, 
+    abi: TOKEN_ABI, 
 }
 
 export const useToken = () => {
+    const {address} = useAccount();  
     
+    const {data: balance} = useReadContract({
+        address: constants.TOKEN_ADDRESS,
+        abi: TOKEN_ABI,
+        functionName: 'balanceOf',
+        args: [address as `0x${string}`] 
+    }); 
 
-    const {data: balance} = useReadContracts([
-        contracts: [
-            
-        ],
+    const {data: totalStaked } = useReadContract({
+        address: constants.TOKEN_ADDRESS,
+        abi: TOKEN_ABI,
+        functionName: 'balanceOf',
+        args: [constants.STAKING as `0x${string}`] 
+    }); 
 
-    ]); 
+    const {data: lpBalance} = useReadContract({
+        address: constants.LP_ADDRESS,
+        abi: TOKEN_ABI,
+        functionName: 'balanceOf',
+        args: [address as `0x${string}`] 
+    }); 
 
+    return {
+        balance: balance,
+        lpBalance: lpBalance,
+        totalStaked: totalStaked,
+        account: address,
+    }; 
 }

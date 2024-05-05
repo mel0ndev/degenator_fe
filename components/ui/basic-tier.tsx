@@ -8,11 +8,19 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"; import { FiInfo } from "react-icons/fi";
-import { TOKEN_ADDRESS } from "@/constants/addresses";  
+import { StakeButton } from "@/components/ui/stake-button"; 
+import { UnstakeButton } from "@/components/ui/unstake-button"; 
+import { ClaimButton } from "@/components/ui/claim-button"; 
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input"
+import { FiInfo } from "react-icons/fi";
 import { useState, useEffect } from "react"; 
-import { useQueryClient } from '@tanstack/react-query' 
-import { useBlockNumber, useBalance } from 'wagmi' 
+import { useBlockNumber } from 'wagmi'; 
+import { useToken } from "@/hooks/token"; 
+import { formatEther, parseEther } from "viem"; 
+import { useReadContract, useAccount } from 'wagmi'
+import * as constants from "@/constants/addresses"; 
+import { STAKING_ABI } from "@/constants/abi/stakingAbi"; 
 
 interface IBasicTier {
     name: string; 
@@ -22,6 +30,7 @@ interface IBasicTier {
     unstakingPeriod: string; 
     bonusColor: string; 
     badgeSource: string; 
+    index: number; 
 } 
 
 export const BasicTier = ({
@@ -31,20 +40,49 @@ export const BasicTier = ({
     apy,
     unstakingPeriod,
     bonusColor,
-    badgeSource
+    badgeSource,
+    index
 }: IBasicTier) => {
-        
-    const queryClient = useQueryClient() 
-    const { data: balance, queryKey } = useBalance({ 
-      address: TOKEN_ADDRESS
-    })
+    const { data: blockNumber } = useBlockNumber({ watch: true }) 
 
-    console.log(balance); 
-    
-    useEffect(() => { 
-        queryClient.invalidateQueries({ queryKey }) 
-    }, [queryClient]) 
+    const { account, balance } = useToken(); 
 
+    const [amount, setAmount] = useState(''); 
+    const [stakingBalance, setStakingBalance] = useState(0); 
+    const [stakingStart, setStakingStart] = useState(0); 
+    const [stakingEnd, setStakingEnd] = useState(0); 
+
+    if (index || index == 0) {
+        const data = useReadContract({
+                address: constants.STAKING,
+                abi: STAKING_ABI,
+                functionName: 'stakingBalances',
+                args: [account as `0x${string}`, BigInt(index)]
+        })
+
+	    useEffect(() => {
+            if (index || index == 0 && data) {
+                setStakingBalance(Number(data.data?.[0])); 
+                setStakingStart(Number(data.data?.[1])); 
+                setStakingEnd(Number(data.data?.[2])); 
+            }
+
+        }, [data, blockNumber, balance]); 
+    }
+
+    const renderButton = (stakingBalance: number, stakingStart: number, stakingEnd: number) => {
+        console.log(stakingEnd, index); 
+        if (stakingBalance > 0 && stakingEnd === 0) {
+                //show unstake 
+                return <UnstakeButton poolIndex={index} />
+            } else if (stakingBalance > 0 && stakingEnd > 0) {
+                //show claim
+                return <ClaimButton poolIndex={index} /> 
+            } else {
+                //show stake
+                return <StakeButton amount={Number(parseEther(amount))} poolIndex={index} />
+            }
+    }
 
     return (
         <div>
@@ -92,27 +130,28 @@ export const BasicTier = ({
                     <span className="font-semi-bold italic"> {(Number(apy) / 1).toFixed(4)}% </span> 
                 </div> 
                 
-                <span className="text-sm text-gray-300"> Balance: {balance?.toString()} </span>
-                <div className="h-10 w-11/12 bg-black bg-opacity-70 outline outline-1 outline-[#66BEE8] flex items-center rounded-xl font-bold text-xl"> 
-                    <span className="pl-5"> 
-                        100
-                    </span> 
+                <Input 
+                type="text" 
+                disabled={stakingBalance > 0} 
+                    placeholder={stakingBalance ? Number(formatEther(stakingBalance)).toFixed(4).toString() : 'Enter Amount'}
+                onChange={(e) => setAmount(e.target.value)}/>
+
+                <div className="flex align-left justify-start w-5/6 mr-2 pt-1">
+                    <span className="text-xs text-gray-300"> Balance: {balance ? Number(formatEther(balance)).toFixed(4).toLocaleString() : '0'} </span>
                 </div> 
 
             </CardContent>
             <CardContent className="p-6 pt-0"> 
                 <div className="grid grid-cols-2 grid-rows-2 text-xs"> 
-                    <span className="flex justify-start"> Current value: </span> 
-                    <span className="flex justify-end"> Value after staking:  </span> 
-                    <span className="flex justify-start"> [amount] </span>
+                    <span className="flex justify-start"> Staked Amount: </span> 
+                    <span className="flex justify-end"> Staked Value:  </span> 
+                    <span className="flex justify-start"> {stakingBalance ? formatEther(BigInt(stakingBalance)) : '0'} </span>
                     <span className="flex justify-end"> [amount] </span>
                 </div> 
             </CardContent> 
 
             <CardContent> 
-                <Button variant="stake" className="w-11/12"> 
-                    Stake
-                </Button> 
+                {renderButton(stakingBalance, stakingStart, stakingEnd)}
             </CardContent> 
 
             <CardFooter className="p-6">

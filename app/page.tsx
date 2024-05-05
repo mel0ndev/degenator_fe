@@ -26,11 +26,11 @@ export default function Home() {
                 <HowTo /> 
             </div> 
 
-            <div className="col-span-5 mt-16 h-[850px]"> 
+            <div className="col-span-5 mt-16 lg:mb-6 h-full"> 
                 <Footer /> 
             </div> 
 
-            <div className="col-span-5"> 
+            <div className="col-span-5 lg:mt-16"> 
                 <Socials /> 
             </div> 
 
