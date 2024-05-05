@@ -13,7 +13,7 @@ export const TotalSupplyStaked = () => {
                 Total Supply Staked: &nbsp; 
             </span> 
             <div>
-                {totalStaked ? Number(formatEther(totalStaked)).toFixed(4).toLocaleString() : '0' }
+                {Number(totalStaked).toFixed(4).toLocaleString()}
             </div> 
         </div>
     ); 

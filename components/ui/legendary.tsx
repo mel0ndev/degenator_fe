@@ -124,7 +124,7 @@ export const LegendaryDegenator = ({
                 onChange={(e) => setAmount(e.target.value)}/>
 
                 <div className="flex align-left justify-start w-full ml-14">
-                    <span className="text-xs text-gray-300"> Balance: {lpBalance ? formatEther(lpBalance).toLocaleString() : '0'} </span>
+                    <span className="text-xs text-gray-300"> Balance: {Number(lpBalance).toFixed(4).toLocaleString()} </span>
                 </div> 
 
                     </CardContent>
@@ -132,7 +132,7 @@ export const LegendaryDegenator = ({
                         <div className="grid grid-cols-2 grid-rows-2 text-xs"> 
                             <span className="flex justify-start"> Staked Amount: </span> 
                             <span className="flex justify-end"> Staked Value:  </span> 
-                            <span className="flex justify-start"> {stakingBalance ? Number(formatEther(stakingBalance)).toFixed(4).toLocaleString() : '0' } </span>
+                            <span className="flex justify-start"> {stakingBalance ? Number(formatEther(BigInt(stakingBalance))).toFixed(4).toLocaleString() : '0' } </span>
                             <span className="flex justify-end"> [amount] </span>
                         </div> 
                     </CardContent> 

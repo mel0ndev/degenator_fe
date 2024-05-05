@@ -52,23 +52,21 @@ export const BasicTier = ({
     const [stakingStart, setStakingStart] = useState(0); 
     const [stakingEnd, setStakingEnd] = useState(0); 
 
-    if (index || index == 0) {
-        const data = useReadContract({
+    const data = useReadContract({
                 address: constants.STAKING,
                 abi: STAKING_ABI,
                 functionName: 'stakingBalances',
                 args: [account as `0x${string}`, BigInt(index)]
-        })
+    })
 
-	    useEffect(() => {
+	useEffect(() => {
             if (index || index == 0 && data) {
                 setStakingBalance(Number(data.data?.[0])); 
                 setStakingStart(Number(data.data?.[1])); 
                 setStakingEnd(Number(data.data?.[2])); 
             }
 
-        }, [data, blockNumber, balance]); 
-    }
+    }, [data, blockNumber]); 
 
     const renderButton = (stakingBalance: number, stakingStart: number, stakingEnd: number) => {
         console.log(stakingEnd, index); 
@@ -133,11 +131,11 @@ export const BasicTier = ({
                 <Input 
                 type="text" 
                 disabled={stakingBalance > 0} 
-                    placeholder={stakingBalance ? Number(formatEther(stakingBalance)).toFixed(4).toString() : 'Enter Amount'}
+                    placeholder={stakingBalance ? Number(formatEther(BigInt(stakingBalance))).toFixed(4).toString() : 'Enter Amount'}
                 onChange={(e) => setAmount(e.target.value)}/>
 
                 <div className="flex align-left justify-start w-5/6 mr-2 pt-1">
-                    <span className="text-xs text-gray-300"> Balance: {balance ? Number(formatEther(balance)).toFixed(4).toLocaleString() : '0'} </span>
+                    <span className="text-xs text-gray-300"> Balance: {Number(balance).toFixed(4).toString()} </span>
                 </div> 
 
             </CardContent>
