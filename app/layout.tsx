@@ -4,7 +4,7 @@ import localFont from 'next/font/local';
 import './globals.css';
 import { Providers } from "./providers"; 
 import '@rainbow-me/rainbowkit/styles.css';
-//import { ThemeProvider } from '@/components/theme-provider'
+import { ThemeProvider } from '@/components/theme-provider'
 //import { NextProviders } from './next-providers'
 
 const poppins = Poppins({ 
@@ -37,7 +37,12 @@ export default function RootLayout({
     <html lang='en' className="scroll-smooth">
       <body className={`${poppins.variable} ${openSans.variable} ${bukaBird.variable}`}>
           <Providers> 
+            <ThemeProvider 
+            attribute="class"
+            defaultTheme="dark"
+            >
             {children}
+            </ThemeProvider>
           </Providers> 
       </body>
     </html>
