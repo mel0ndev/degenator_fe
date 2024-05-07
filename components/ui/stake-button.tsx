@@ -14,6 +14,8 @@ interface IStakeArgs {
 }
 
 export const StakeButton = ({amount, poolIndex}: IStakeArgs) => {
+
+    console.log(contracts.TOKEN_ADDRESS); 
     
     const { account } = useToken(); 
     
@@ -43,10 +45,10 @@ export const StakeButton = ({amount, poolIndex}: IStakeArgs) => {
         <div> 
         <form onSubmit={submit}> 
             <Button variant="stake" type="submit" className="w-11/12" disabled={isPending}> 
-                { isPending ? <Spinner /> : 'Stake' }
+                { isConfirming ? <Spinner /> : 'Stake' }
             </Button> 
 
-        { isConfirmed && hash && (
+        { hash && isConfirmed && (
             <OnSuccess hash={hash} /> 
         )}
         </form> 

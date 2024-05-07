@@ -17,14 +17,11 @@ interface IonSuccess {
 
 export const OnSuccess = ({hash}: IonSuccess) => {
   return (
-    <AlertDialog>
-      <AlertDialogTrigger asChild>
-        <Button variant="outline">Show Dialog</Button>
-      </AlertDialogTrigger>
-      <AlertDialogContent>
+    <AlertDialog defaultOpen>
+      <AlertDialogContent className="bg-slate-900 flex flex-col w-full items-center">
         <AlertDialogHeader>
           <AlertDialogTitle>Success!</AlertDialogTitle>
-          <AlertDialogDescription>
+          <AlertDialogDescription className="w-full">
               Tx Hash: {hash} 
           </AlertDialogDescription>
         </AlertDialogHeader>

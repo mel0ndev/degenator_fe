@@ -43,7 +43,7 @@ export const LegendaryStakeButton = ({amount, poolIndex}: IStakeArgs) => {
         <div> 
         <form onSubmit={submit}> 
             <Button variant="legendary" type="submit" className="w-11/12 h-full" disabled={isPending}> 
-                { isPending ? <Spinner /> : 'Stake' }
+                { isConfirming ? <Spinner /> : 'Stake' }
             </Button> 
 
         { isConfirmed && hash && (
