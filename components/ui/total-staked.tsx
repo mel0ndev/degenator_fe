@@ -13,7 +13,7 @@ export const TotalSupplyStaked = () => {
                 Total Supply Staked: &nbsp; 
             </span> 
             <div>
-                {Number(totalStaked).toFixed(4).toLocaleString()}
+                {(Number(totalStaked) / 1e18).toFixed(2).toLocaleString()}
             </div> 
         </div>
     ); 

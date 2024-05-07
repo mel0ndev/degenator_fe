@@ -31,7 +31,7 @@ export const HowToCard = ({titleColor, title, description, leftAligned, imageSrc
                 {leftAligned ? (
                     <CardContent className="lg:text-left lg:align-start relative flex grid grid-cols-5 items-center h-10">
                         <p className="col-span-5 lg:col-span-4 flex">{description}</p>
-                        <div className="invisible lg:visible relative flex col-span-5 lg:justify-end lg:top-[-75%]">
+                        <div className="invisible xl:visible relative flex col-span-5 lg:justify-end lg:top-[-75%]">
                             <Image 
                                 src={imageSrc}
                                 alt="image"
@@ -53,7 +53,7 @@ export const HowToCard = ({titleColor, title, description, leftAligned, imageSrc
                 ) : (
                     <CardContent className="lg:text-right lg:align-end relative flex grid grid-cols-5 h-24">
                         <p className="col-span-5 lg:col-span-4 lg:col-start-2 flex">{description}</p>
-                        <div className="invisible lg:visible relative col-span-2 top-[-75%]">
+                        <div className="invisible xl:visible relative col-span-2 top-[-75%]">
                             <Image 
                                 src={imageSrc}
                                 alt="image"

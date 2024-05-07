@@ -120,11 +120,11 @@ export const LegendaryDegenator = ({
                 <Input 
                 type="text" 
                 disabled={stakingBalance > 0} 
-                    placeholder={stakingBalance ? Number(formatEther(BigInt(stakingBalance))).toFixed(4).toString() : 'Enter Amount'}
+                    placeholder={stakingBalance ? (Number(formatEther(BigInt(stakingBalance))) / 1e18).toFixed(4).toString() : 'Enter Amount'}
                 onChange={(e) => setAmount(e.target.value)}/>
 
                 <div className="flex align-left justify-start w-full ml-14">
-                    <span className="text-xs text-gray-300"> Balance: {Number(lpBalance).toFixed(4).toLocaleString()} </span>
+                    <span className="text-xs text-gray-300"> Balance: {(Number(lpBalance) / 1e18).toFixed(4).toLocaleString()} </span>
                 </div> 
 
                     </CardContent>

@@ -1,3 +1,4 @@
+import Image from "next/image"; 
 import { HowToCard } from "@/components/ui/howto-card"; 
 
 const HowTo = () => {
@@ -15,6 +16,26 @@ const HowTo = () => {
             <span className="font-bukabird text-5xl col-span-10 flex flex-col items-center justify-center"> 
                 How to Buy
             </span> 
+            <div className="absolute">
+            <div className="hidden xl:flex relative"> 
+                <Image
+                    src="/assets/waitwhat.png"
+                    alt="image"
+                    width={500}
+                    height={500}
+                    className="hidden xl:block relative left-[10rem] top-[3rem]"
+                />
+            </div> 
+            <div className="hidden xl:flex relative"> 
+                <Image
+                    src="/assets/explode.png"
+                    alt="image"
+                    width={250}
+                    height={250}
+                    className="hidden xl:block relative left-[88em] top-[-14rem]"
+                />
+            </div> 
+            </div> 
             {cards.map((c) => (
                 <div key={c.title} className="lg:col-start-3 col-start-2 lg:col-span-6 col-span-8 flex flex-col items-center"> 
                     <HowToCard titleColor={c.titleColor} title={c.title} description={c.description} leftAligned={c.leftAligned} imageSrc={c.imageSrc} uniswap={c.uniswap} /> 

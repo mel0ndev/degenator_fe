@@ -131,11 +131,11 @@ export const BasicTier = ({
                 <Input 
                 type="text" 
                 disabled={stakingBalance > 0} 
-                    placeholder={stakingBalance ? Number(formatEther(BigInt(stakingBalance))).toFixed(4).toString() : 'Enter Amount'}
+                    placeholder={stakingBalance ? (Number(formatEther(BigInt(stakingBalance))) / 1e18).toFixed(4).toString() : 'Enter Amount'}
                 onChange={(e) => setAmount(e.target.value)}/>
 
                 <div className="flex align-left justify-start w-5/6 mr-2 pt-1">
-                    <span className="text-xs text-gray-300"> Balance: {Number(balance).toFixed(4).toString()} </span>
+                    <span className="text-xs text-gray-300"> Balance: {(Number(balance) / 1e18).toFixed(4).toString()} </span>
                 </div> 
 
             </CardContent>
@@ -143,7 +143,7 @@ export const BasicTier = ({
                 <div className="grid grid-cols-2 grid-rows-2 text-xs"> 
                     <span className="flex justify-start"> Staked Amount: </span> 
                     <span className="flex justify-end"> Staked Value:  </span> 
-                    <span className="flex justify-start"> {stakingBalance ? formatEther(BigInt(stakingBalance)) : '0'} </span>
+                    <span className="flex justify-start"> {stakingBalance ? (Number(formatEther(BigInt(stakingBalance))) / 1e18).toFixed(4).toString() : '0'} </span>
                     <span className="flex justify-end"> [amount] </span>
                 </div> 
             </CardContent> 
