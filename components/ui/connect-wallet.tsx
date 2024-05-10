@@ -1,7 +1,6 @@
 import Image from 'next/image'; 
 import { Button } from '@/components/ui/button'; 
 import { ConnectButton } from '@rainbow-me/rainbowkit';
-import { ConnectWalletMobile } from "@/components/ui/connect-wallet-mobile"; 
 
 interface IConnectWallet {
     mobile?: boolean; 
