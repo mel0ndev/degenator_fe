@@ -1,6 +1,7 @@
 import Image from 'next/image'; 
 import { Button } from '@/components/ui/button'; 
 import { ConnectButton } from '@rainbow-me/rainbowkit';
+import { ConnectWalletMobile } from "@/components/ui/connect-wallet-mobile"; 
 
 interface IConnectWallet {
     mobile?: boolean; 
@@ -34,9 +35,17 @@ export const ConnectWallet = ({mobile}: IConnectWallet) => {
                 </div> 
             ) : (
                 <div className="flex flex-col items-center p-8"> 
-                    <Button variant="connectMobile" className="w-7/8" size="xl"> 
-                       Connect Wallet 
-                    </Button> 
+			<ConnectButton 
+				label="Connect"
+				 showBalance={{
+				  smallScreen: false,
+  				  largeScreen: false,
+  				}}
+				accountStatus={{
+				  smallScreen: 'avatar',
+  				  largeScreen: 'avatar',
+  				}}
+            />
                 </div> 
             )}
         </>
