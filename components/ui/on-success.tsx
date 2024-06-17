@@ -21,8 +21,10 @@ export const OnSuccess = ({hash}: IonSuccess) => {
       <AlertDialogContent className="bg-slate-900 flex flex-col w-full items-center">
         <AlertDialogHeader>
           <AlertDialogTitle>Success!</AlertDialogTitle>
-          <AlertDialogDescription className="w-full">
-              Tx Hash: {hash} 
+          <AlertDialogDescription className="w-full underline">
+              <a href={`https://etherscan.io/tx/${hash}`}> 
+                View the transaction on Etherscan. 
+              </a> 
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>

@@ -19,7 +19,7 @@ import { useToken } from "@/hooks/token";
 import { useReadContract, useAccount } from 'wagmi'
 import { useBlockNumber } from 'wagmi'; 
 import * as contracts from "@/constants/addresses"; 
-import { LEGENDARY_STAKING_ABI } from "@/constants/abi/legendaryStakingAbi"; 
+import { LEGENDARY_MASTERCHEF } from "@/constants/abi/legendaryMasterchefAbi"; 
 
 interface IBasicTier {
     name: string; 
@@ -48,17 +48,15 @@ export const LegendaryDegenator = ({
     const [stakingEnd, setStakingEnd] = useState(0); 
 
     const data = useReadContract({
-        address: contracts.LEGENDARY_STAKING,
-        abi: LEGENDARY_STAKING_ABI,
-        functionName: 'stakingBalances',
-        args: [account as `0x${string}`, BigInt(0)]
+        address: contracts.LEGENDARY_MASTERCHEF,
+        abi: LEGENDARY_MASTERCHEF,
+        functionName: 'userInfo',
+        args: [BigInt(1), account as `0x${string}`]
     })
 
 	useEffect(() => {
         if (data) {
             setStakingBalance(Number(data.data?.[0])); 
-            setStakingStart(Number(data.data?.[1])); 
-            setStakingEnd(Number(data.data?.[2])); 
         }
 
     }, [data, blockNumber, lpBalance]); 
@@ -72,7 +70,7 @@ export const LegendaryDegenator = ({
                 return <LegendaryClaimButton /> 
             } else {
                 //show stake
-                return <LegendaryStakeButton amount={Number(parseEther(amount))} poolIndex={0} />
+                return <LegendaryStakeButton amount={Number(parseEther(amount))} poolIndex={1} />
             }
     }
 

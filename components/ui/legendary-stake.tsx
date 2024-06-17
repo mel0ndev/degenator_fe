@@ -4,7 +4,7 @@ import { Spinner } from "@/components/ui/spinner";
 import { useToken } from "@/hooks/token"; 
 import { type BaseError, useWriteContract, useWaitForTransactionReceipt } from 'wagmi'; 
 import * as contracts from "@/constants/addresses"; 
-import { LEGENDARY_STAKING_ABI } from "@/constants/abi/legendaryStakingAbi"; 
+import { LEGENDARY_MASTERCHEF } from "@/constants/abi/legendaryMasterchefAbi"; 
 import { ERC20_ABI } from "@/constants/abi/erc20Abi"; 
 import { OnSuccess } from "@/components/ui/on-success"; 
 import { useState } from "react"; 
@@ -31,27 +31,30 @@ export const LegendaryStakeButton = ({amount, poolIndex}: IStakeArgs) => {
       hash,
     })
 
+    console.log("APPROVED LP", approvedLP); 
+    console.log("AMOUNT", amount); 
+
     async function approve() {
         writeContract({
             address: contracts.LP_ADDRESS,
             abi: ERC20_ABI,
             functionName: 'approve',
-            args: [contracts.LEGENDARY_STAKING, BigInt(amount)]
+            args: [contracts.LEGENDARY_MASTERCHEF, BigInt(amount)]
         }); 
     }
 
     async function stake() {
         writeContract({
-            address: contracts.LEGENDARY_STAKING,
-            abi: LEGENDARY_STAKING_ABI,
-            functionName: 'stake',
-            args: [BigInt(amount), BigInt(poolIndex)]
+            address: contracts.LEGENDARY_MASTERCHEF,
+            abi: LEGENDARY_MASTERCHEF,
+            functionName: 'deposit',
+            args: [BigInt(poolIndex), BigInt(amount)]
         }); 
     }
 
     return (
         <div> 
-            { approvedLP && Number(approvedLP) < amount ? (
+            { Number(approvedLP) < amount ? (
             <Button variant="legendary" onClick={() => approve()} className="w-11/12 h-full" disabled={isPending}> 
                 { isConfirming ? <Spinner /> : 'Approve' }
             </Button> 
@@ -61,7 +64,7 @@ export const LegendaryStakeButton = ({amount, poolIndex}: IStakeArgs) => {
             </Button> 
             )}
         { error && (
-            <div>Error: {(error as BaseError).shortMessage || error.message}</div>
+            <div className="text-red-500">Error: {(error as BaseError).shortMessage || error.message}</div>
         )}
         { isConfirmed && hash && (
             <OnSuccess hash={hash} /> 

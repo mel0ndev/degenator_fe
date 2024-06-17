@@ -69,7 +69,6 @@ export const BasicTier = ({
     }, [data, blockNumber]); 
 
     const renderButton = (stakingBalance: number, stakingStart: number, stakingEnd: number) => {
-        console.log(stakingEnd, index); 
         if (stakingBalance > 0 && stakingEnd === 0) {
                 //show unstake 
                 return <UnstakeButton poolIndex={index} />

@@ -3,8 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner"; 
 import { useToken } from "@/hooks/token"; 
 import { type BaseError, useWriteContract, useWaitForTransactionReceipt } from 'wagmi'; 
-import * as contracts from "@/constants/addresses"; 
-import { STAKING_ABI } from "@/constants/abi/stakingAbi"; 
+import * as contracts from "@/constants/addresses"; import { STAKING_ABI } from "@/constants/abi/stakingAbi"; 
 import { OnSuccess } from "@/components/ui/on-success"; 
 
 

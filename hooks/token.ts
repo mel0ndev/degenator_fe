@@ -37,7 +37,7 @@ export const useToken = () => {
         address: constants.LP_ADDRESS,
         abi: TOKEN_ABI,
         functionName: 'allowance', 
-        args: [address, constants.LEGENDARY_STAKING]
+        args: [address, constants.LEGENDARY_MASTERCHEF]
     }); 
 
     return {
