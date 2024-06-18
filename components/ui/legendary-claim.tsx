@@ -4,7 +4,7 @@ import { Spinner } from "@/components/ui/spinner";
 import { useToken } from "@/hooks/token"; 
 import { type BaseError, useWriteContract, useWaitForTransactionReceipt } from 'wagmi'; 
 import * as contracts from "@/constants/addresses"; 
-import { LEGENDARY_STAKING_ABI } from "@/constants/abi/legendaryStakingAbi"; 
+import { LEGENDARY_MASTERCHEF } from "@/constants/abi/legendaryMasterchefAbi"; 
 import { OnSuccess } from "@/components/ui/on-success"; 
 
 
@@ -26,10 +26,10 @@ export const LegendaryClaimButton = () => {
     async function submit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault(); 
         console.log(writeContract({
-            address: contracts.LEGENDARY_STAKING,
-            abi: LEGENDARY_STAKING_ABI,
-            functionName: 'claim',
-            args: [BigInt(0)]
+            address: contracts.LEGENDARY_MASTERCHEF,
+            abi: LEGENDARY_MASTERCHEF,
+            functionName: 'withdraw',
+            args: [BigInt(1)]
         })); 
     }
 
