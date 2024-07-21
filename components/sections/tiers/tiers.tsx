@@ -53,7 +53,6 @@ const Tiers = () => {
                     <LegendaryDegenator 
                         name="Legendary Degenator" 
                         stakingPeriod="30 Days" 
-                        apy="300" 
                         bonus="900" 
                         unstakingPeriod="48 hours" 
                         bonusColor="#8FDBFF" 
@@ -84,7 +83,6 @@ const Tiers = () => {
                 <LegendaryDegenator 
                     name="Legendary Degenator" 
                     stakingPeriod="30 Days" 
-                    apy="300" 
                     bonus="900" 
                     unstakingPeriod="48 hours" 
                     bonusColor="#8FDBFF" 

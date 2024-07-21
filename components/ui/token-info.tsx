@@ -1,5 +1,8 @@
+'use client'; 
 import Image from 'next/image'; 
 import { Button } from '@/components/ui/button'; 
+import { MdContentCopy } from "react-icons/md";
+import { TOKEN_ADDRESS } from "@/constants/addresses";  
 
 interface ITokenInfoModule {
     title: string; 
@@ -9,11 +12,16 @@ interface ITokenInfoModule {
     mobile?: boolean; 
     padding?: string; 
     button?: boolean; 
+    copy?: boolean; 
 }
 
-export const TokenInfoModule = ({title, info, important, className, mobile, padding, button}: ITokenInfoModule) => {
+export const TokenInfoModule = ({title, info, important, className, mobile, padding, button, copy}: ITokenInfoModule) => {
     
     if (typeof(padding) === typeof(undefined)) padding = '6'; 
+
+	const copyAddress = async () => {
+		await navigator.clipboard.writeText(TOKEN_ADDRESS.toString());
+	}
 
     return (
         <> 
@@ -28,9 +36,21 @@ export const TokenInfoModule = ({title, info, important, className, mobile, padd
                         {info?.toUpperCase()}
                     </span>
                 ) : (
+                    <div> 
                     <span className="text-xl pt-2 lg:pt-4"> 
                         {info?.toUpperCase()}
                     </span>
+                {copy && <div className="pl-4 inline-block"> 
+                    <Button 
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => copyAddress()}
+                    >
+                        <MdContentCopy />
+                    </Button>  
+                </div>
+                }
+                    </div> 
                 )}
             </div>
         </div> 

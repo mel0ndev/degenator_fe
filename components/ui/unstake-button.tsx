@@ -30,12 +30,12 @@ export const UnstakeButton = ({poolIndex}: IUnstakeArgs) => {
     
     async function submit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault(); 
-        console.log(writeContract({
+        writeContract({
             address: contracts.STAKING,
             abi: STAKING_ABI,
             functionName: 'unstake',
             args: [BigInt(poolIndex)]
-        })); 
+        }); 
     }
 
     return (

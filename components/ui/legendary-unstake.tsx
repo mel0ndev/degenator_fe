@@ -7,8 +7,11 @@ import * as contracts from "@/constants/addresses";
 import { LEGENDARY_MASTERCHEF } from "@/constants/abi/legendaryMasterchefAbi"; 
 import { OnSuccess } from "@/components/ui/on-success"; 
 
+interface IUnstakeArgs {
+    poolIndex: number;
+}
 
-export const LegendaryUnstakeButton = () => {
+export const LegendaryUnstakeButton = ({poolIndex}: IUnstakeArgs) => {
     const { account } = useToken(); 
     
     const { 
@@ -23,27 +26,30 @@ export const LegendaryUnstakeButton = () => {
       hash,
     })
     
-    async function submit(e: React.FormEvent<HTMLFormElement>) {
-        e.preventDefault(); 
+    async function unstake() {
+        console.log("clicked and flicked bucko"); 
         writeContract({
             address: contracts.LEGENDARY_MASTERCHEF,
             abi: LEGENDARY_MASTERCHEF,
             functionName: 'unstake',
-            args: [BigInt(1)]
-        }); 
+            args: [BigInt(poolIndex)]
+        }) 
     }
 
     return (
         <div> 
-            <form onSubmit={submit}> 
-                <Button variant="legendary" type="submit" className="w-11/12 h-full" disabled={isPending}> 
+            <Button 
+                variant="legendary" 
+                className="w-11/12 h-full" 
+                disabled={isPending}
+                onClick={() => unstake()}
+            > 
                     { isPending ? <Spinner /> : 'Unstake' }
                 </Button> 
 
             { isConfirmed && hash && (
                 <OnSuccess hash={hash} /> 
             )}
-            </form> 
         </div> 
     ); 
 }

@@ -24,7 +24,6 @@ import { LEGENDARY_MASTERCHEF } from "@/constants/abi/legendaryMasterchefAbi";
 interface IBasicTier {
     name: string; 
     stakingPeriod: string; 
-    apy: string; 
     bonus: string; 
     unstakingPeriod: string; 
     bonusColor: string; 
@@ -34,7 +33,6 @@ export const LegendaryDegenator = ({
     name, 
     stakingPeriod, 
     bonus,
-    apy,
     unstakingPeriod,
     bonusColor,
 }: IBasicTier) => {
@@ -46,31 +44,40 @@ export const LegendaryDegenator = ({
     const [stakingBalance, setStakingBalance] = useState(0); 
     const [stakingStart, setStakingStart] = useState(0); 
     const [stakingEnd, setStakingEnd] = useState(0); 
+    const [apy, setApy] = useState(0); 
 
     const data = useReadContract({
         address: contracts.LEGENDARY_MASTERCHEF,
         abi: LEGENDARY_MASTERCHEF,
         functionName: 'userInfo',
-        args: [BigInt(1), account as `0x${string}`]
+        args: [BigInt(0), account as `0x${string}`]
     })
+    
 
 	useEffect(() => {
         if (data) {
             setStakingBalance(Number(data.data?.[0])); 
         }
 
+        //calculate the apy
+        let secondsInYear = 60 * 60 * 24 * 365; 
+        let rewardPerBlock = 1e17; 
+
+        let poolRewardPerYear = secondsInYear * rewardPerBlock; 
+        setApy(poolRewardPerYear); 
+
     }, [data, blockNumber, lpBalance]); 
 
     const renderButton = (stakingBalance: number, stakingStart: number, stakingEnd: number) => {
         if (stakingBalance > 0 && stakingEnd === 0) {
                 //show unstake 
-                return <LegendaryUnstakeButton />
+                return <LegendaryUnstakeButton poolIndex={0}/>
             } else if (stakingBalance > 0 && stakingEnd > 0) {
                 //show claim
                 return <LegendaryClaimButton /> 
             } else {
                 //show stake
-                return <LegendaryStakeButton amount={Number(parseEther(amount))} poolIndex={1} />
+                return <LegendaryStakeButton amount={Number(parseEther(amount))} poolIndex={0} />
             }
     }
 
@@ -103,7 +110,7 @@ export const LegendaryDegenator = ({
 
                         <div className="flex flex-col justify-center items-center"> 
                             <div className={`h-16 w-48 bg-black bg-opacity-30 flex justify-center items-center rounded-lg mt-2 mb-3`}> 
-                                <span className={`font-bold text-4xl text-[${bonusColor}]`}> +{bonus}% </span>
+                                <span className={`font-bold text-4xl text-[${bonusColor}]`}> +{900}% </span>
                             </div> 
                         </div> 
                         <div> 

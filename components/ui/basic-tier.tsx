@@ -53,10 +53,10 @@ export const BasicTier = ({
     const [stakingEnd, setStakingEnd] = useState(0); 
 
     const data = useReadContract({
-                address: constants.STAKING,
-                abi: STAKING_ABI,
-                functionName: 'stakingBalances',
-                args: [account as `0x${string}`, BigInt(index)]
+        address: constants.STAKING,
+        abi: STAKING_ABI,
+        functionName: 'stakingBalances',
+        args: [account as `0x${string}`, BigInt(index)]
     })
 
 	useEffect(() => {
@@ -142,7 +142,7 @@ export const BasicTier = ({
                 <div className="grid grid-cols-2 grid-rows-2 text-xs"> 
                     <span className="flex justify-start"> Staked Amount: </span> 
                     <span className="flex justify-end"> Staked Value:  </span> 
-                    <span className="flex justify-start"> {stakingBalance ? (Number(formatEther(BigInt(stakingBalance))) / 1e18).toFixed(4).toString() : '0'} </span>
+                    <span className="flex justify-start"> {stakingBalance ? (Number(formatEther(BigInt(stakingBalance)))).toFixed(2).toString() : '0'} </span>
                     <span className="flex justify-end"> [amount] </span>
                 </div> 
             </CardContent> 
