@@ -33,6 +33,13 @@ export const useToken = () => {
         args: [address as `0x${string}`] 
     }); 
 
+    const {data: totalLpStaked} = useReadContract({
+        address: constants.LP_ADDRESS,
+        abi: TOKEN_ABI,
+        functionName: 'balanceOf',
+        args: [constants.LEGENDARY_MASTERCHEF as `0x${string}`] 
+    }); 
+
     const {data: approvedLP} = useReadContract({
         address: constants.LP_ADDRESS,
         abi: TOKEN_ABI,
@@ -45,6 +52,7 @@ export const useToken = () => {
         lpBalance: lpBalance,
         approvedLP: approvedLP,
         totalStaked: totalStaked,
+        totalLpStaked: totalLpStaked,
         account: address,
     }; 
 }

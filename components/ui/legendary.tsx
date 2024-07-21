@@ -38,7 +38,7 @@ export const LegendaryDegenator = ({
 }: IBasicTier) => {
     const { data: blockNumber } = useBlockNumber({ watch: true }) 
 
-    const { account, lpBalance } = useToken(); 
+    const { account, lpBalance, totalLpStaked } = useToken(); 
 
     const [amount, setAmount] = useState(''); 
     const [stakingBalance, setStakingBalance] = useState(0); 
@@ -60,11 +60,14 @@ export const LegendaryDegenator = ({
         }
 
         //calculate the apy
-        let secondsInYear = 60 * 60 * 24 * 365; 
-        let rewardPerBlock = 1e17; 
+        if (totalLpStaked) {
+            let secondsInYear = 60 * 60 * 24 * 365; 
+            let rewardPerBlock = 1e17; 
 
-        let poolRewardPerYear = secondsInYear * rewardPerBlock; 
-        setApy(poolRewardPerYear); 
+            let poolRewardPerYear = secondsInYear * rewardPerBlock; 
+            let apy = (poolRewardPerYear / Number(totalLpStaked)) * 100; 
+            setApy(apy); 
+        }
 
     }, [data, blockNumber, lpBalance]); 
 
