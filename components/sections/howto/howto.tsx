@@ -32,7 +32,7 @@ const HowTo = () => {
                     alt="image"
                     width={250}
                     height={250}
-                    className="hidden xl:block relative left-[88em] top-[-14rem]"
+                    className="hidden xl:block relative right-[-88rem] top-[-14rem]"
                 />
             </div> 
             </div> 

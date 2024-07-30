@@ -125,17 +125,20 @@ export const LegendaryDegenator = ({
                             <span className="font-semi-bold italic"> {(Number(apy) / 1).toFixed(4)}% </span> 
                         </div> 
         
-                <Input 
-                type="text" 
-                disabled={stakingBalance > 0} 
-                    placeholder={stakingBalance ? (Number(formatEther(BigInt(stakingBalance))) / 1e18).toFixed(4).toString() : 'Enter Amount'}
-                onChange={(e) => setAmount(e.target.value)}/>
-
-                <div className="flex align-left justify-start w-full ml-14">
-                    <span className="text-xs text-gray-300"> Balance: {(Number(lpBalance) / 1e18).toFixed(4).toLocaleString()} </span>
-                </div> 
-
+                    <Input 
+                        type="text" 
+                        disabled={stakingBalance > 0} 
+                        placeholder={stakingBalance ? (Number(formatEther(BigInt(stakingBalance))) / 1e18).toFixed(4).toString() : 'Enter Amount'}
+                        onChange={(e) => setAmount(e.target.value)}
+                    />
                     </CardContent>
+
+                    <CardContent className="pl-10"> 
+                    <div className="grid grid-cols-2 grid-rows-2 text-xs"> 
+                        <span className="text-xs text-gray-300 flex justify-start"> Balance: {(Number(lpBalance) / 1e18).toFixed(4).toLocaleString()} </span>
+                    </div> 
+                    </CardContent>
+
                     <CardContent className="p-10 pb-4 pt-2"> 
                         <div className="grid grid-cols-2 grid-rows-2 text-xs"> 
                             <span className="flex justify-start"> Staked Amount: </span> 

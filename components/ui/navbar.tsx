@@ -15,7 +15,7 @@ export const Navbar = () => {
                             alt="logo"
                         />
                     </div>
-                    <span className="text-lg lg:text-2xl font-open tracking-[.5em] lg:tracking-[1.2em]">
+                    <span className="text-lg text-white lg:text-2xl font-open tracking-[.5em] lg:tracking-[1.2em]">
                         DEGENATOR
                     </span> 
                 </div> 
@@ -25,7 +25,7 @@ export const Navbar = () => {
                 <BurgerMenu /> 
             </div> 
 
-            <div className="invisible lg:visible lg:justify-end lg:flex lg:items-center lg:col-span-3">
+            <div className="invisible text-white lg:visible lg:justify-end lg:flex lg:items-center lg:col-span-3">
                 <div className="flex justify-end p-3"> 
                     <div className="grid grid-cols-4 gap-x-2 items-center">
 
@@ -36,9 +36,6 @@ export const Navbar = () => {
                     </div> 
                 </div> 
             </div> 
-
-
-
         </div> 
     ); 
 }

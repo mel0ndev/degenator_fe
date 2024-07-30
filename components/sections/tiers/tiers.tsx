@@ -33,7 +33,7 @@ const Tiers = () => {
                         ))} 
                     </div> 
                     <div className="flex flex-col items-center font-poppins col-span-10"> 
-                        *Staked funds + rewards will be automatically restaked after completetion with zero gas fees attached
+                        *Staked funds + rewards will be automatically restaked after completion with zero gas fees attached
                     </div> 
                 </div> 
             </div>
