@@ -18,7 +18,7 @@ const Tiers = () => {
         <div className="bg-[url('/assets/tiers-arc-left.png')] bg-no-repeat">
             <div className="bg-[url('/assets/tiers-arc-right.png')] bg-no-repeat bg-right">
         <div className="grid grid-cols-10 grid-row-5 pt-14 mt-10 gap-y-8 p-10 pb-0 h-full"> 
-            <div className="font-bukabird col-span-10 lg:col-span-10 flex items-center text-center justify-center text-5xl lg:text-5xl"> 
+            <div className="font-bukabird text-white col-span-10 lg:col-span-10 flex items-center text-center justify-center text-5xl lg:text-5xl"> 
                 Higher tier, bigger rewards
             </div>
 

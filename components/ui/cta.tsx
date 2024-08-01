@@ -8,14 +8,14 @@ export const CallToAction = () => {
                 </span>
                 
                 <span> 
-                    <span className="text-4xl lg:text-7xl">
+                    <span className="text-4xl text-white lg:text-7xl">
                         $
                     </span>
                     DGN 
                     <br></br>
                 </span> 
 
-                <span> 
+                <span className="text-white"> 
                     and Earn
                     <br></br>
                 </span>
