@@ -32,14 +32,35 @@ export const TokenInfoModule = ({title, info, important, className, mobile, padd
                     {title.toUpperCase()}
                 </span> 
                 {important ? (
-                    <span className="text-3xl font-bold pt-2 lg:pt-4 lg:mb-5"> 
+                    <span className="text-3xl text-white font-bold"> 
                         {info?.toUpperCase()}
                     </span>
                 ) : (
                     <div> 
-                    <span className="text-xl pt-2 lg:pt-4"> 
+                        {!button ? (
+                    <span className="text-xl text-white pt-2 lg:pt-4"> 
                         {info?.toUpperCase()}
                     </span>
+                ) : ( 
+                    <div className={`w-full flex flex-col text-left text-lg`}>
+                    <span className="lg:text-xl flex w-full items-center"> 
+                        <Button 
+                            variant="uniswap"
+                            size="lg"
+                            className="pl-8 px-12 w-full"
+                        > 
+                        <Image 
+                            src="/assets/uniswaplogo.svg" 
+                            width={30}
+                            height={30}
+                            alt="u"
+                            className="mr-3"
+                        />
+                            BUY NOW 
+                        </Button>
+                    </span>
+                    </div> 
+                )}
                 {copy && <div className="pl-4 inline-block"> 
                     <Button 
                         variant="ghost"
@@ -57,7 +78,7 @@ export const TokenInfoModule = ({title, info, important, className, mobile, padd
         )}
         {mobile && (
             <div> 
-                <div className="pt-5 flex flex-col items-center font-poppins">
+                <div className="pt-5 text-white flex flex-col items-center font-poppins">
                     <div className={`w-3/4 pl-${padding} flex flex-col text-left text-accent`}>
                         {title.toUpperCase()}
                     </div> 

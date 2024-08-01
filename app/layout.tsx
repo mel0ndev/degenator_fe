@@ -38,7 +38,7 @@ export default function RootLayout({
       <body className={`${poppins.variable} ${openSans.variable} ${bukaBird.variable}`}>
           <Providers> 
             <ThemeProvider 
-            defaultTheme="light"
+            defaultTheme="dark"
             >
             {children}
             </ThemeProvider>

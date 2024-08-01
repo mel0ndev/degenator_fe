@@ -13,28 +13,8 @@ const TokenInfo = () => {
                 <TokenInfoModule title="token contract" info={TOKEN_ADDRESS.substring(0,5) + '...' + TOKEN_ADDRESS.substring(36,TOKEN_ADDRESS.length)} copy/>
                 <TokenInfoModule title="symbol" info="$dgn" />
                 <TokenInfoModule title="tax" info="buy/sell 5%" />
+                <TokenInfoModule title="avilable on uniswap"  button />
 
-                <div className="flex flex-col items-center col-span-2 lg:col-span-1 font-poppins"> 
-                    <span className="text-accent"> 
-                        AVAILABLE ON UNISWAP
-                    </span> 
-                    <span className="lg:text-xl pt-5 flex justify-center items-center"> 
-                        <Button 
-                            variant="uniswap"
-                            size="lg"
-                            className="pl-8 px-12"
-                        > 
-                        <Image 
-                            src="/assets/uniswaplogo.svg" 
-                            width={30}
-                            height={30}
-                            alt="u"
-                            className="mr-3"
-                        />
-                            BUY NOW 
-                        </Button>
-                    </span>
-                </div> 
             </div> 
         
             <div>

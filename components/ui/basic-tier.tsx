@@ -105,7 +105,7 @@ export const BasicTier = ({
                 </div> 
             </div> 
             <CardHeader>
-                <CardTitle>{name}</CardTitle>
+                <CardTitle className="text-white">{name}</CardTitle>
                 <CardDescription className="italic text-gray-400">{stakingPeriod}</CardDescription>
             </CardHeader>
             <CardContent className="flex flex-col justify-center items-center">

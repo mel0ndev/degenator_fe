@@ -87,9 +87,9 @@ export const LegendaryDegenator = ({
     return (
         <div className={`w-full h-full p-0 lg:p-6 lg:pb-0 flex flex-col items-center justify-center`}>
             <div className="bg-gradient-to-br from-[#EEA83F] to-[#92A8EC] p-1 rounded-lg w-4/5 h-full flex flex-col items-center">
-                <Card className="bg-gradient-to-r w-full h-full from-zinc-600 to-[#14101D] bg-opacity-10 shadow-md flex flex-col items-center text-center font-poppins justify-between pl-16 pr-16">
+                <Card className="bg-gradient-to-r w-full h-full from-zinc-600 to-[#14101D] bg-opacity-10 shadow-md flex flex-col items-center text-center font-poppins justify-between pl-8 pr-8">
                     <div className="flex w-full grid grid-cols-3 shadow-2xl shadow-color-white"> 
-                        <div className="flex justify-end col-span-3 m-"> 
+                        <div className="flex justify-end col-span-3 ml-16"> 
                             <Button size="icon"> 
                                 <FiInfo 
                                     size={24} 
@@ -99,14 +99,14 @@ export const LegendaryDegenator = ({
                             </Button> 
                         </div> 
                     </div> 
-                    <CardHeader>
+                    <CardHeader className="pr-8 pl-8">
                         <CardTitle className="text-3xl">{name}</CardTitle>
                         <CardDescription className="text-[#FCBF21] text-lg">
                             Incentivized liquidity pool.
                         </CardDescription>
                         <CardDescription className="italic text-gray-400">{stakingPeriod}</CardDescription>
                     </CardHeader>
-                    <CardContent className="flex flex-col justify-center items-center">
+                    <CardContent className="flex flex-col justify-center items-center pr-8 pl-8">
                         <p className="text-[#B282F0] text-4xl font-bold pb-5"> APY: {apy}%</p>
                         <span className="text-sm"> Additional bonus reward: <br></br></span> 
                         <span className="text-sm"> (after stake duration) </span> 
@@ -133,13 +133,13 @@ export const LegendaryDegenator = ({
                     />
                     </CardContent>
 
-                    <CardContent className="pl-10"> 
+                    <CardContent className="pl-14 pr-8"> 
                     <div className="grid grid-cols-2 grid-rows-2 text-xs"> 
                         <span className="text-xs text-gray-300 flex justify-start"> Balance: {(Number(lpBalance) / 1e18).toFixed(4).toLocaleString()} </span>
                     </div> 
                     </CardContent>
 
-                    <CardContent className="p-10 pb-4 pt-2"> 
+                    <CardContent className="p-14 pb-4 pt-2 pr-14"> 
                         <div className="grid grid-cols-2 grid-rows-2 text-xs"> 
                             <span className="flex justify-start"> Staked Amount: </span> 
                             <span className="flex justify-end"> Staked Value:  </span> 
@@ -148,7 +148,7 @@ export const LegendaryDegenator = ({
                         </div> 
                     </CardContent> 
 
-                    <CardContent> 
+                    <CardContent className="pr-8 pl-8"> 
                         {renderButton(stakingBalance, stakingStart, stakingEnd)}
                     </CardContent> 
 
