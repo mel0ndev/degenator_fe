@@ -4,7 +4,7 @@ import { FooterLogo } from "@/components/ui/footer-logo";
 
 const Footer = () => {
     return (
-        <div className="h-full w-full relative"> 
+        <div className="h-full w-full text-white relative"> 
             <FooterLogo /> 
             <FooterPic /> 
         </div> 

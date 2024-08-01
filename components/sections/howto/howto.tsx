@@ -13,7 +13,7 @@ const HowTo = () => {
 
     return (
         <div className="grid grid-cols-10 grid-rows-5 gap-y-10"> 
-            <span className="font-bukabird text-5xl col-span-10 flex flex-col items-center justify-center"> 
+            <span className="font-bukabird text-white text-5xl col-span-10 flex flex-col items-center justify-center"> 
                 How to Buy
             </span> 
             <div className="absolute">

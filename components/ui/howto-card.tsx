@@ -21,7 +21,7 @@ export const HowToCard = ({titleColor, title, description, leftAligned, imageSrc
 
     return (
         <Card className="bg-gradient-to-tr from-[#11101D] to-zinc-700 w-full h-full lg:p-10 p-5">
-            <CardHeader className={`text-[${titleColor}] p-2`}>
+            <CardHeader className={`text-[${titleColor}] text-white p-2`}>
                 {leftAligned ? (
                     <CardTitle className="font-poppins text-4xl lg:text-left lg:align-start">{title}</CardTitle>
                 ) : (
@@ -29,7 +29,7 @@ export const HowToCard = ({titleColor, title, description, leftAligned, imageSrc
                 )}
             </CardHeader>
                 {leftAligned ? (
-                    <CardContent className="lg:text-left lg:align-start relative flex grid grid-cols-5 items-center h-10">
+                    <CardContent className="lg:text-left text-white lg:align-start relative flex grid grid-cols-5 items-center h-10">
                         <p className="col-span-5 lg:col-span-4 flex">{description}</p>
                         <div className="invisible xl:visible relative flex col-span-5 lg:justify-end lg:top-[-75%]">
                             <Image 
@@ -51,7 +51,7 @@ export const HowToCard = ({titleColor, title, description, leftAligned, imageSrc
                         </div>
                     </CardContent>
                 ) : (
-                    <CardContent className="lg:text-right lg:align-end relative flex grid grid-cols-5 h-24">
+                    <CardContent className="lg:text-right text-white lg:align-end relative flex grid grid-cols-5 h-24">
                         <p className="col-span-5 lg:col-span-4 lg:col-start-2 flex">{description}</p>
                         <div className="invisible xl:visible relative col-span-2 top-[-75%]">
                             <Image 
