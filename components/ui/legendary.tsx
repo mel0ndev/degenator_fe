@@ -108,8 +108,8 @@ export const LegendaryDegenator = ({
                     </CardHeader>
                     <CardContent className="flex flex-col justify-center items-center pr-8 pl-8">
                         <p className="text-[#B282F0] text-4xl font-bold pb-5"> APY: {apy}%</p>
-                        <span className="text-sm"> Additional bonus reward: <br></br></span> 
-                        <span className="text-sm"> (after stake duration) </span> 
+                        <span className="text-sm text-white"> Additional bonus reward: <br></br></span> 
+                        <span className="text-sm text-white"> (after stake duration) </span> 
 
                         <div className="flex flex-col justify-center items-center"> 
                             <div className={`h-16 w-48 bg-black bg-opacity-30 flex justify-center items-center rounded-lg mt-2 mb-3`}> 
@@ -118,11 +118,11 @@ export const LegendaryDegenator = ({
                         </div> 
                         <div> 
                             <span className="italic text-sm text-gray-300"> Daily Rewards: </span>
-                            <span className="font-semi-bold italic"> {(Number(apy) / 365).toFixed(4)}% </span> 
+                            <span className="font-semi-bold italic text-white"> {(Number(apy) / 365).toFixed(4)}% </span> 
                         </div> 
                         <div className="mb-5"> 
                             <span className="italic text-sm text-gray-300"> Yearly Rewards: </span>
-                            <span className="font-semi-bold italic"> {(Number(apy) / 1).toFixed(4)}% </span> 
+                            <span className="font-semi-bold italic text-white"> {(Number(apy) / 1).toFixed(4)}% </span> 
                         </div> 
         
                     <Input 
@@ -139,7 +139,7 @@ export const LegendaryDegenator = ({
                     </div> 
                     </CardContent>
 
-                    <CardContent className="p-14 pb-4 pt-2 pr-14"> 
+                    <CardContent className="p-14 pb-4 pt-2 pr-14 text-white"> 
                         <div className="grid grid-cols-2 grid-rows-2 text-xs"> 
                             <span className="flex justify-start"> Staked Amount: </span> 
                             <span className="flex justify-end"> Staked Value:  </span> 

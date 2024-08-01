@@ -7,8 +7,8 @@ export const CallToAction = () => {
                     Stake&nbsp;
                 </span>
                 
-                <span> 
-                    <span className="text-4xl text-white lg:text-7xl">
+                <span className="text-white"> 
+                    <span className="text-4xl lg:text-7xl">
                         $
                     </span>
                     DGN 

@@ -7,7 +7,7 @@ export const Socials = () => {
     return (
         <div className="grid grid-cols-10 flex items-center lg:mt-8 w-full pb-6"> 
             <div className="col-span-8 col-start-2 border-t lg:mt-16 mt-4 w-full grid grid-cols-2"> 
-                <div className="p-6 pt-0 mt-6"> 
+                <div className="p-6 pt-0 mt-6 text-white"> 
                     Copyright 2024 All Rights Reserved.
                 </div> 
 
