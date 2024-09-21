@@ -31,9 +31,6 @@ export const LegendaryStakeButton = ({amount, poolIndex}: IStakeArgs) => {
       hash,
     })
 
-    console.log("APPROVED LP", approvedLP); 
-    console.log("AMOUNT", amount); 
-
     async function approve() {
         writeContract({
             address: contracts.LP_ADDRESS,

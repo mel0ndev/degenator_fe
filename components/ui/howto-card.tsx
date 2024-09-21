@@ -57,8 +57,8 @@ export const HowToCard = ({titleColor, title, description, leftAligned, imageSrc
                             <Image 
                                 src={imageSrc}
                                 alt="image"
-                                height={185}
-                                width={185}
+                                height={150}
+                                width={150}
                                 className="relative"
                             /> 
                             

@@ -95,13 +95,15 @@ export const BasicTier = ({
         <Card className="bg-gradient-to-r from-zinc-600 to-[#14101D] bg-opacity-10 shadow-md flex flex-col items-center text-center font-poppins justify-between">
             <div className="flex w-full grid grid-cols-3"> 
                 <div className="flex justify-end col-span-3 m-5"> 
-                    <Button size="icon"> 
+                    <a href="https://degenator.gitbook.io/degenator-docs/staking" target="_blank"> 
+                        <Button size="icon"> 
                         <FiInfo 
                             size={24} 
                             color="white" 
                             className="opacity-65 hover:opacity-100" 
                         />
                     </Button> 
+                    </a>
                 </div> 
             </div> 
             <CardHeader>
@@ -144,7 +146,7 @@ export const BasicTier = ({
                     <span className="flex justify-start"> Staked Amount: </span> 
                     <span className="flex justify-end"> Staked Value:  </span> 
                     <span className="flex justify-start"> {stakingBalance ? (Number(formatEther(BigInt(stakingBalance)))).toFixed(2).toString() : '0'} </span>
-                    <span className="flex justify-end"> [amount] </span>
+                    <span className="flex justify-end"> [$ value] </span>
                 </div> 
             </CardContent> 
 

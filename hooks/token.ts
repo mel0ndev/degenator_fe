@@ -19,6 +19,13 @@ export const useToken = () => {
         args: [address as `0x${string}`] 
     }); 
 
+    const {data: approved} = useReadContract({
+        address: constants.TOKEN_ADDRESS,
+        abi: TOKEN_ABI,
+        functionName: 'allowance',
+        args: [address, constants.STAKING]
+    }); 
+
     const {data: totalStaked } = useReadContract({
         address: constants.TOKEN_ADDRESS,
         abi: TOKEN_ABI,
@@ -49,6 +56,7 @@ export const useToken = () => {
 
     return {
         balance: balance,
+        approved: approved,
         lpBalance: lpBalance,
         approvedLP: approvedLP,
         totalStaked: totalStaked,

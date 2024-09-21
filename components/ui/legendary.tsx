@@ -144,7 +144,7 @@ export const LegendaryDegenator = ({
                             <span className="flex justify-start"> Staked Amount: </span> 
                             <span className="flex justify-end"> Staked Value:  </span> 
                             <span className="flex justify-start"> {stakingBalance ? Number(formatEther(BigInt(stakingBalance))).toFixed(4).toLocaleString() : '0' } </span>
-                            <span className="flex justify-end"> [amount] </span>
+                            <span className="flex justify-end"> [$ value] </span>
                         </div> 
                     </CardContent> 
 

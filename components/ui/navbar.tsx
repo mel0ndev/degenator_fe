@@ -9,7 +9,7 @@ export const Navbar = () => {
             <div className="lg:flex lg:flex-col items-center col-span-4 lg:col-span-2">
                 <div className="flex lg:justify-start items-center p-3"> 
                     <div className="pr-5"> <Image 
-                            src="/assets/logo.svg"
+                            src="/assets/degenator-new-logo.png"
                             width={50}
                             height={50}
                             alt="logo"
