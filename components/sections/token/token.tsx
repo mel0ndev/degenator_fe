@@ -30,7 +30,7 @@ const TokenInfo = () => {
                     <TokenInfoModule title="symbol" info="$dgn" mobile />
                     <TokenInfoModule title="tax" info="buy/sell 5%" mobile />
                     <div className="col-span-2 flex flex-col justify-start">
-                        <TokenInfoModule title="token contract" info={TOKEN_ADDRESS} mobile padding="0"/>
+                        <TokenInfoModule title="token contract" info={TOKEN_ADDRESS.substring(0,5) + '...' + TOKEN_ADDRESS.substring(36,TOKEN_ADDRESS.length)} mobile padding="0"/>
                     </div>
                     <div className="col-span-2 flex flex-col justify-start">
                         <TokenInfoModule title="available on uniswap" button mobile padding="0"/>

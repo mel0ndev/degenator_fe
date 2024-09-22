@@ -83,10 +83,9 @@ export const TokenInfoModule = ({title, info, important, className, mobile, padd
                         {title.toUpperCase()}
                     </div> 
                     {!button ? (
-                    <div className={`w-3/4 pl-${padding} flex flex-col text-left text-lg`}>
-                        {info?.toUpperCase()}
-
-                    </div> 
+                        <div className={`w-3/4 pl-${padding} flex flex-col text-left text-lg`}>
+                            {info?.toUpperCase()}
+                        </div> 
                     ) : (
                     <div className={`w-3/4 pl-${padding} flex flex-col text-left text-lg`}>
                     <span className="lg:text-xl pt-5 flex w-full items-center"> 
