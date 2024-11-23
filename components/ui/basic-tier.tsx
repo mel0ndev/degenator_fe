@@ -117,7 +117,7 @@ export const BasicTier = ({
 
                 <div className="flex flex-col justify-center items-center"> 
                     <div className={`h-10 w-28 bg-black bg-opacity-30 flex justify-center items-center rounded-lg mt-2 mb-3`}> 
-                        <span className={`font-bold text-xl text-[${bonusColor}]`}> +{bonus}% </span>
+                        <span className='font-bold text-xl' style={{ color: bonusColor }}> +{bonus}% </span>
                     </div> 
                 </div> 
                 <div> 

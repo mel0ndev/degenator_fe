@@ -19,23 +19,44 @@ const TokenInfo = () => {
         
             <div>
 
+
                 <div className="lg:hidden w-full"> 
                     <ConnectWallet mobile /> 
                 </div> 
 
 
-                <div className="grid grid-cols-2 grid-rows-4 flex flex-col bg-black h-auto font-poppins pb-10 lg:hidden"> 
-                    <TokenInfoModule title="supply" info="1b" important mobile/>
-                    <TokenInfoModule title="network" info="ethereum erc-20" mobile/>
-                    <TokenInfoModule title="symbol" info="$dgn" mobile />
-                    <TokenInfoModule title="tax" info="buy/sell 5%" mobile />
-                    <div className="col-span-2 flex flex-col justify-start">
-                        <TokenInfoModule title="token contract" info={TOKEN_ADDRESS.substring(0,5) + '...' + TOKEN_ADDRESS.substring(36,TOKEN_ADDRESS.length)} mobile padding="0"/>
+
+                <div className="lg:hidden">
+                    <div className="grid grid-cols-2 gap-2 bg-black p-4">
+                        <div>
+                            <TokenInfoModule title="supply" info="1b" important mobile/>
+                        </div>
+                        <div>
+                            <TokenInfoModule title="network" info="ethereum erc-20" mobile/>
+                        </div>
+                        <div>
+                            <TokenInfoModule title="symbol" info="$dgn" mobile />
+                        </div>
+                        <div>
+                            <TokenInfoModule title="tax" info="buy/sell 5%" mobile />
+                        </div>
+                        <div>
+                            <TokenInfoModule 
+                                title="token contract" 
+                                info={TOKEN_ADDRESS.substring(0,5) + '...' + TOKEN_ADDRESS.substring(36)} 
+                                mobile 
+                                copy
+                            />
+                        </div>
+                        <div className="col-span-2">
+                            <TokenInfoModule title="available on uniswap" button mobile/>
+                        </div>
                     </div>
-                    <div className="col-span-2 flex flex-col justify-start">
-                        <TokenInfoModule title="available on uniswap" button mobile padding="0"/>
-                    </div>
-                </div> 
+                </div>
+
+
+
+
             </div>
 
 

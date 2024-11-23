@@ -23,9 +23,45 @@ export const TokenInfoModule = ({title, info, important, className, mobile, padd
 		await navigator.clipboard.writeText(TOKEN_ADDRESS.toString());
 	}
 
-    return (
-        <> 
-        {!mobile && (
+    const MobileContent = () => (
+          <div className="w-full px-4 py-2">
+            <div className="text-accent text-sm mb-1">
+                {title.toUpperCase()}
+            </div>
+            {!button ? (
+                <div className="text-white text-base">
+                    {info?.toUpperCase()}
+                    {copy && (
+                        <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={copyAddress}
+                            className="ml-2 inline-flex items-center"
+                        >
+                            <MdContentCopy />
+                        </Button>
+                    )}
+                </div>
+            ) : (
+                <Button
+                    variant="uniswap"
+                    size="lg"
+                    className="w-full flex items-center justify-center mt-1"
+                >
+                    <Image
+                        src="/assets/uniswaplogo.svg"
+                        width={24}
+                        height={24}
+                        alt="uniswap"
+                        className="mr-2"
+                    />
+                    BUY NOW
+                </Button>
+            )}
+        </div>
+    ); 
+
+    const DesktopContent = () => (
         <div className={`${className} pt-5 flex flex-col justify-center items-center font-poppins`}>
             <div className="flex flex-col items-center">
                 <span className="text-accent"> 
@@ -75,40 +111,8 @@ export const TokenInfoModule = ({title, info, important, className, mobile, padd
                 )}
             </div>
         </div> 
-        )}
-        {mobile && (
-            <div> 
-                <div className="pt-5 text-white flex flex-col items-center font-poppins">
-                    <div className={`w-3/4 pl-${padding} flex flex-col text-left text-accent`}>
-                        {title.toUpperCase()}
-                    </div> 
-                    {!button ? (
-                        <div className={`w-3/4 pl-${padding} flex flex-col text-left text-lg`}>
-                            {info?.toUpperCase()}
-                        </div> 
-                    ) : (
-                    <div className={`w-3/4 pl-${padding} flex flex-col text-left text-lg`}>
-                    <span className="lg:text-xl pt-5 flex w-full items-center"> 
-                        <Button 
-                            variant="uniswap"
-                            size="lg"
-                            className="pl-8 px-12 w-full"
-                        > 
-                        <Image 
-                            src="/assets/uniswaplogo.svg" 
-                            width={30}
-                            height={30}
-                            alt="u"
-                            className="mr-3"
-                        />
-                            BUY NOW 
-                        </Button>
-                    </span>
-                    </div> 
-                    )}
-                </div> 
-            </div> 
-        )}
-    </>
+
     ); 
+
+    return mobile ? <MobileContent /> : <DesktopContent />;
 }
