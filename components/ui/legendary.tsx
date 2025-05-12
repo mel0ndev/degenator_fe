@@ -19,7 +19,7 @@ import { useToken } from "@/hooks/token";
 import { useReadContract, useAccount } from 'wagmi'
 import { useBlockNumber } from 'wagmi'; 
 import * as contracts from "@/constants/addresses"; 
-import { LEGENDARY_MASTERCHEF } from "@/constants/abi/legendaryMasterchefAbi"; 
+import { LEGENDARY_STAKING_ABI } from "@/constants/abi/legendaryStakingAbi"; 
 
 interface IBasicTier {
     name: string; 
@@ -47,10 +47,10 @@ export const LegendaryDegenator = ({
     const [apy, setApy] = useState(0); 
 
     const data = useReadContract({
-        address: contracts.LEGENDARY_MASTERCHEF,
-        abi: LEGENDARY_MASTERCHEF,
-        functionName: 'userInfo',
-        args: [BigInt(0), account as `0x${string}`]
+        address: contracts.LEGENDARY_STAKING,
+        abi: LEGENDARY_STAKING_ABI,
+        functionName: 'stakingBalances',
+        args: [account as `0x${string}`, BigInt(0)]
     })
     
 
@@ -107,22 +107,22 @@ export const LegendaryDegenator = ({
                         <CardDescription className="italic text-gray-400">{stakingPeriod}</CardDescription>
                     </CardHeader>
                     <CardContent className="flex flex-col justify-center items-center pr-8 pl-8">
-                        <p className="text-[#B282F0] text-4xl font-bold pb-5"> APY: {apy}%</p>
+                        <p className="text-[#B282F0] text-4xl font-bold pb-5"> APY: 300%</p>
                         <span className="text-sm text-white"> Additional bonus reward: <br></br></span> 
                         <span className="text-sm text-white"> (after stake duration) </span> 
 
                         <div className="flex flex-col justify-center items-center"> 
                             <div className={`h-16 w-48 bg-black bg-opacity-30 flex justify-center items-center rounded-lg mt-2 mb-3`}> 
-                                <span className={`font-bold text-4xl text-[${bonusColor}]`}> +{900}% </span>
+                                <span className={`font-bold text-4xl text-[#8FDBFF]`}> +900% </span>
                             </div> 
                         </div> 
                         <div> 
                             <span className="italic text-sm text-gray-300"> Daily Rewards: </span>
-                            <span className="font-semi-bold italic text-white"> {(Number(apy) / 365).toFixed(4)}% </span> 
+                            <span className="font-semi-bold italic text-white"> {(Number(300) / 365).toFixed(4)}% </span> 
                         </div> 
                         <div className="mb-5"> 
                             <span className="italic text-sm text-gray-300"> Yearly Rewards: </span>
-                            <span className="font-semi-bold italic text-white"> {(Number(apy) / 1).toFixed(4)}% </span> 
+                            <span className="font-semi-bold italic text-white"> {(Number(300) / 1).toFixed(2)}% </span> 
                         </div> 
         
                     <Input 

@@ -3,6 +3,8 @@ import { useReadContract, useAccount } from 'wagmi'
 import * as constants from "@/constants/addresses"; 
 //import {TOKEN_ABI} from "@/constants/abis"; 
 import { TOKEN_ABI } from "@/constants/abi/tokenAbi"; 
+import { ERC20_ABI } from "@/constants/abi/erc20Abi"; 
+import { STAKING_ABI } from "@/constants/abi/stakingAbi";
 
 const degenatorContract = {
     address: constants.TOKEN_ADDRESS,
@@ -12,19 +14,20 @@ const degenatorContract = {
 export const useToken = () => {
     const {address} = useAccount();  
     
-    const {data: balance} = useReadContract({
+    const {data: balance, error: tokenBalanceError} = useReadContract({
         address: constants.TOKEN_ADDRESS,
         abi: TOKEN_ABI,
         functionName: 'balanceOf',
-        args: [address as `0x${string}`] 
+        args: [address as `0x${string}`]
     }); 
 
-    const {data: approved} = useReadContract({
+    const {data: approved, error: tokenAllowanceError, fetchStatus: isFetching} = useReadContract({
         address: constants.TOKEN_ADDRESS,
         abi: TOKEN_ABI,
         functionName: 'allowance',
-        args: [address, constants.STAKING]
+        args: [address as `0x${string}`, constants.STAKING as `0x${string}`],
     }); 
+
 
     const {data: totalStaked } = useReadContract({
         address: constants.TOKEN_ADDRESS,
@@ -33,30 +36,31 @@ export const useToken = () => {
         args: [constants.STAKING as `0x${string}`] 
     }); 
 
-    const {data: lpBalance} = useReadContract({
+    const {data: lpBalance, error: lpTokenBalanceError} = useReadContract({
         address: constants.LP_ADDRESS,
         abi: TOKEN_ABI,
         functionName: 'balanceOf',
         args: [address as `0x${string}`] 
     }); 
 
-    const {data: totalLpStaked} = useReadContract({
+    const {data: totalLpStaked, error: totalLpStakedError} = useReadContract({
         address: constants.LP_ADDRESS,
         abi: TOKEN_ABI,
         functionName: 'balanceOf',
-        args: [constants.LEGENDARY_MASTERCHEF as `0x${string}`] 
+        args: [constants.LEGENDARY_STAKING as `0x${string}`] 
     }); 
 
-    const {data: approvedLP} = useReadContract({
+    const {data: approvedLP, error: lpAllowanceError} = useReadContract({
         address: constants.LP_ADDRESS,
         abi: TOKEN_ABI,
         functionName: 'allowance', 
-        args: [address, constants.LEGENDARY_MASTERCHEF]
+        args: [address as `0x${string}`, constants.LEGENDARY_STAKING]
     }); 
 
+
     return {
-        balance: balance,
-        approved: approved,
+        balance: balance || tokenBalanceError,
+        approved: {approved, tokenAllowanceError, isFetching},
         lpBalance: lpBalance,
         approvedLP: approvedLP,
         totalStaked: totalStaked,

@@ -4,7 +4,7 @@ import { Spinner } from "@/components/ui/spinner";
 import { useToken } from "@/hooks/token"; 
 import { type BaseError, useWriteContract, useWaitForTransactionReceipt } from 'wagmi'; 
 import * as contracts from "@/constants/addresses"; 
-import { LEGENDARY_MASTERCHEF } from "@/constants/abi/legendaryMasterchefAbi"; 
+import { LEGENDARY_STAKING_ABI } from "@/constants/abi/legendaryStakingAbi";
 import { ERC20_ABI } from "@/constants/abi/erc20Abi"; 
 import { OnSuccess } from "@/components/ui/on-success"; 
 import { useState } from "react"; 
@@ -36,22 +36,22 @@ export const LegendaryStakeButton = ({amount, poolIndex}: IStakeArgs) => {
             address: contracts.LP_ADDRESS,
             abi: ERC20_ABI,
             functionName: 'approve',
-            args: [contracts.LEGENDARY_MASTERCHEF, BigInt(amount)]
+            args: [contracts.LEGENDARY_STAKING, BigInt(amount)]
         }); 
     }
 
     async function stake() {
         writeContract({
-            address: contracts.LEGENDARY_MASTERCHEF,
-            abi: LEGENDARY_MASTERCHEF,
-            functionName: 'deposit',
-            args: [BigInt(poolIndex), BigInt(amount)]
+            address: contracts.LEGENDARY_STAKING,
+            abi: LEGENDARY_STAKING_ABI,
+            functionName: 'stake',
+            args: [BigInt(amount), BigInt(poolIndex)]
         }); 
     }
 
     return (
         <div> 
-            { Number(approvedLP) < amount ? (
+            { Number(approvedLP) < amount || Number(approvedLP) == 0 ? (
             <Button variant="legendary" onClick={() => approve()} className="w-11/12 h-full" disabled={isPending}> 
                 { isConfirming ? <Spinner /> : 'Approve' }
             </Button> 

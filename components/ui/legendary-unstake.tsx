@@ -4,7 +4,7 @@ import { Spinner } from "@/components/ui/spinner";
 import { useToken } from "@/hooks/token"; 
 import { type BaseError, useWriteContract, useWaitForTransactionReceipt } from 'wagmi'; 
 import * as contracts from "@/constants/addresses"; 
-import { LEGENDARY_MASTERCHEF } from "@/constants/abi/legendaryMasterchefAbi"; 
+import { LEGENDARY_STAKING_ABI } from "@/constants/abi/legendaryStakingAbi"; 
 import { OnSuccess } from "@/components/ui/on-success"; 
 
 interface IUnstakeArgs {
@@ -29,8 +29,8 @@ export const LegendaryUnstakeButton = ({poolIndex}: IUnstakeArgs) => {
     async function unstake() {
         console.log("clicked and flicked bucko"); 
         writeContract({
-            address: contracts.LEGENDARY_MASTERCHEF,
-            abi: LEGENDARY_MASTERCHEF,
+            address: contracts.LEGENDARY_STAKING,
+            abi: LEGENDARY_STAKING_ABI,
             functionName: 'unstake',
             args: [BigInt(poolIndex)]
         }) 

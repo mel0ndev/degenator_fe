@@ -20,7 +20,7 @@ interface IHowToCard {
 export const HowToCard = ({titleColor, title, description, leftAligned, imageSrc, uniswap}: IHowToCard) => {
 
     return (
-        <Card className="bg-gradient-to-tr from-[#11101D] to-zinc-700 w-full h-full lg:p-10 p-5">
+        <Card className="bg-gradient-to-tr from-[#11101D] to-zinc-700 w-full h-full lg:p-10 p-3 sm:p-3 lg:p-5">
             <CardHeader className={`text-[${titleColor}] text-white p-2`}>
                 {leftAligned ? (
                     <CardTitle className="font-poppins text-4xl lg:text-left lg:align-start">{title}</CardTitle>
@@ -45,7 +45,7 @@ export const HowToCard = ({titleColor, title, description, leftAligned, imageSrc
                                 alt="image"
                                 height={50}
                                 width={50}
-                                className="relative right-[12%]"
+                                className="absolute bottom-0 right-0 transform -translate-x-16 -translate-y-16"
                             /> 
                 )}
                         </div>

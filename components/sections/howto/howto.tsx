@@ -11,7 +11,7 @@ const HowTo = () => {
     ]
 
 
-    return (
+    {/* return (
         <div className="grid grid-cols-10 grid-rows-5 gap-y-10"> 
             <span className="font-bukabird text-white text-5xl col-span-10 flex flex-col items-center justify-center"> 
                 How to Buy
@@ -26,15 +26,17 @@ const HowTo = () => {
                     className="hidden xl:block relative left-[10rem] top-[3rem]"
                 />
             </div> 
-            <div className="hidden xl:flex relative"> 
-                <Image
-                    src="/assets/explode.png"
-                    alt="image"
-                    width={250}
-                    height={250}
-                    className="hidden xl:block relative right-[-88rem] top-[-14rem]"
-                />
-            </div> 
+            <div className="relative w-full h-full">
+              <Image
+                src="/assets/explode.png"
+                alt="cloud image"
+                width={250}
+                height={250}
+                className="hidden xl:block absolute top-0 right-0 mr-16 mt-8"
+              />
+            </div>
+
+
             </div> 
             {cards.map((c) => (
                 <div key={c.title} className="lg:col-start-3 col-start-2 lg:col-span-6 col-span-8 flex flex-col items-center"> 
@@ -44,6 +46,84 @@ const HowTo = () => {
 
 
         </div> 
+    ); 
+}
+      */}
+     
+    return (
+        <div className="grid grid-cols-10 grid-rows-5 gap-y-10">
+            <span className="font-bukabird text-white text-5xl col-span-10 flex flex-col items-center justify-center">
+                How to Buy
+            </span>
+
+            {/* Card 1 with "Wait What" image */}
+            <div className="lg:col-start-3 col-start-2 lg:col-span-6 col-span-8 flex flex-col items-center relative">
+                {/* Decorative image for card 1 */}
+                <div className="hidden xl:block absolute left-[-240px] top-[-240px]">
+                    <Image
+                        src="/assets/waitwhat.png"
+                        alt="Wait What"
+                        width={500}
+                        height={500}
+                    />
+                </div>
+
+                {/* Decorative image for card 2 */}
+                <div className="hidden xl:block absolute right-[-150px] top-[-175px]">
+                    <Image
+                        src="/assets/explode.png"
+                        alt="Cloud"
+                        width={250}
+                        height={250}
+                    />
+                </div>
+
+                <HowToCard 
+                    titleColor="#FCEE21"
+                    title="Create a Wallet" 
+                    description="Download metamask or your wallet of choice from the App Store or Google Play store for free. Desktop users, download the metamask extension by going to 'metamask.io.'" 
+                    leftAligned={true} 
+                    imageSrc="/assets/cloud.svg"
+                /> 
+            </div>
+
+
+         {/* Card 2 with explode/cloud image */}
+            <div className="lg:col-start-3 col-start-2 lg:col-span-6 col-span-8 flex flex-col items-center relative">
+
+                <HowToCard
+                    titleColor="#B2BEE5"
+                    title="Get Some ETH"
+                    description="Have ETH ready to swap for $DGN. If you don't have any ETH, you can buy some directly on metamask, transfer from another wallet, or buy an an exchange and send it to your wallet."
+                    leftAligned={false}
+                    imageSrc="/assets/eth.svg"
+                />
+            </div>
+
+              {/* Card 3 */}
+            <div className="lg:col-start-3 col-start-2 lg:col-span-6 col-span-8 flex flex-col items-center">
+                <HowToCard
+                    titleColor="#FF007A"
+                    title="Go to Uniswap"
+                    description="Go to app.uniswap.org in your browser and connect your wallet. Paste the $DGN token address into Uniswap, select Degenator, and confirm."
+                    leftAligned={true}
+                    imageSrc="/assets/uni.svg"
+                    uniswap={true}
+                />
+            </div>
+
+              <div className="lg:col-start-3 col-start-2 lg:col-span-6 col-span-8 flex flex-col items-center">
+                <HowToCard
+                    titleColor="#FFFFFF"
+                    title="Swap ETH for $DGN"
+                    description="Swap ETH for $DGN by clicking the swap button on Uniswap. There is a 5% buy/sell tax on the token, so make sure to increase the slippage to 5% for a successful swap."
+                    leftAligned={false}
+                    imageSrc="/assets/degenator-new-logo.png"
+                />
+            </div>
+
+
+        </div>
     ); 
 }
 

@@ -20,6 +20,7 @@ export const ConnectWallet = ({mobile}: IConnectWallet) => {
                        className="hover:opacity-90 hover:cursor-pointer"
                    />
                       */}
+            <div className="flex flex-col items-center p-8"> 
 			<ConnectButton 
 				label="Connect"
 				 showBalance={{
@@ -30,10 +31,15 @@ export const ConnectWallet = ({mobile}: IConnectWallet) => {
 				  smallScreen: 'avatar',
   				  largeScreen: 'avatar',
   				}}
+                chainStatus={{
+                    smallScreen: 'icon',
+                    largeScreen: 'icon'
+                }}
             />
                 </div> 
+                </div> 
             ) : (
-                <div className="flex flex-col items-center p-8"> 
+            <div className="flex flex-col items-center p-8"> 
 			<ConnectButton 
 				label="Connect"
 				 showBalance={{

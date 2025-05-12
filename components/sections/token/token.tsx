@@ -54,11 +54,7 @@ const TokenInfo = () => {
                     </div>
                 </div>
 
-
-
-
             </div>
-
 
         </div> 
     );

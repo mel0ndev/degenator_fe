@@ -81,6 +81,15 @@ export const BasicTier = ({
             }
     }
 
+	const handleMaxOnClick = () => {
+		if (balance) {
+            if (typeof balance === 'bigint') {
+                setAmount(Number(formatEther(balance)).toFixed(3).toString())
+            }
+		}
+	}
+
+
     return (
         <div>
             <div className="flex flex-col items-center relative"> 
@@ -126,18 +135,23 @@ export const BasicTier = ({
                 </div> 
                 <div className="mb-5"> 
                     <span className="italic text-sm text-gray-300"> Yearly Rewards: </span>
-                    <span className="font-semi-bold italic text-white"> {(Number(apy) / 1).toFixed(4)}% </span> 
+                    <span className="font-semi-bold italic text-white"> {(Number(apy) / 1).toFixed(2)}% </span> 
                 </div> 
                 
                 <Input 
                     type="text" 
+                    value={amount}
                     disabled={stakingBalance > 0} 
                     placeholder={stakingBalance ? (Number(formatEther(BigInt(stakingBalance))) / 1e18).toFixed(4).toString() : 'Enter Amount'}
                     onChange={(e) => setAmount(e.target.value)}
                 />
 
-                <div className="flex align-left justify-start w-5/6 mr-2 pb-2 pt-1">
-                    <span className="text-xs text-gray-300"> Balance: {(Number(balance) / 1e18).toFixed(4).toString()} </span>
+                <div className="flex align-left justify-start w-5/6 mr-2 pb-2 pt-1 cursor-pointer">
+                    <span 
+                        className="text-xs text-gray-300"
+                        onClick={() => handleMaxOnClick()}
+                    > 
+                     Balance: {(Number(balance) / 1e18).toFixed(4).toString()} </span>
                 </div> 
 
             </CardContent>

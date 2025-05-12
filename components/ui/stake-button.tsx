@@ -1,4 +1,4 @@
-"use client"; 
+//"use client"; 
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner"; 
 import { useToken } from "@/hooks/token"; 
@@ -16,8 +16,6 @@ interface IStakeArgs {
 
 export const StakeButton = ({amount, poolIndex}: IStakeArgs) => {
 
-    console.log(contracts.TOKEN_ADDRESS); 
-    
     const { account, approved } = useToken(); 
     
     const { 
@@ -30,8 +28,8 @@ export const StakeButton = ({amount, poolIndex}: IStakeArgs) => {
     const { isLoading: isConfirming, isSuccess: isConfirmed } =
     useWaitForTransactionReceipt({
       hash,
-    }
-    )
+    }); 
+
     async function approve() {
         writeContract({
             address: contracts.TOKEN_ADDRESS,
@@ -40,8 +38,6 @@ export const StakeButton = ({amount, poolIndex}: IStakeArgs) => {
             args: [contracts.STAKING, BigInt(amount)]
         }); 
     }
-
-    console.log("APPROVED TOKEN", approved); 
    
     async function stake() {
         console.log(writeContract({
@@ -54,7 +50,7 @@ export const StakeButton = ({amount, poolIndex}: IStakeArgs) => {
 
     return (
         <div> 
-            { Number(approved) < amount || Number(approved) == 0 ? (
+            { Number(approved.approved) < amount || Number(approved.approved) == 0 ? (
             <Button variant="stake" onClick={() => approve()} className="w-11/12" disabled={isPending}> 
                 { isConfirming ? <Spinner /> : 'Approve' }
             </Button> 
@@ -70,7 +66,5 @@ export const StakeButton = ({amount, poolIndex}: IStakeArgs) => {
             <OnSuccess hash={hash} /> 
         )}
         </div> 
-
-
     ); 
 }

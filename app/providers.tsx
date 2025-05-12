@@ -16,11 +16,39 @@ import {
   mainnet,
   sepolia,
 } from 'wagmi/chains';
+import { http } from '@wagmi/core';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 const { wallets } = getDefaultWallets();
 
 const projectId = '21d43aa076a8d5a839b7102fed57c534';
+
+const customMainnet = {
+  ...mainnet,
+  rpcUrls: {
+    ...mainnet.rpcUrls,
+    default: {
+      http: ['https://eth-mainnet.g.alchemy.com/v2/YOUR_ALCHEMY_API_KEY'],
+    },
+    public: {
+      http: ['https://eth-mainnet.g.alchemy.com/v2/YOUR_ALCHEMY_API_KEY'],
+    },
+  },
+};
+
+const customSepolia = {
+  ...sepolia,
+  rpcUrls: {
+    ...sepolia.rpcUrls,
+    default: {
+      http: ['https://eth-sepolia.g.alchemy.com/v2/4a_fcooQpl1VYmABiq23Tg2BHLmG6I4V'],
+    },
+    public: {
+      http: ['https://eth-sepolia.g.alchemy.com/v2/4a_fcooQpl1VYmABiq23Tg2BHLmG6I4V'],
+    },
+  },
+};
+
 
 export const config = getDefaultConfig({
   appName: 'RainbowKit demo',
@@ -32,12 +60,15 @@ export const config = getDefaultConfig({
       wallets: [argentWallet, trustWallet, ledgerWallet],
     },
   ],
-  chains: [
-    mainnet,
-    //...(process.env.NEXT_PUBLIC_ENABLE_TESTNETS === 'true' ? [sepolia] : []),
-    sepolia,
+chains: [
+    customMainnet,
+    customSepolia,
   ],
   ssr: true,
+  transports: {
+    [mainnet.id]: http('https://eth-mainnet.g.alchemy.com/v2/YOUR_ALCHEMY_API_KEY'),
+    [sepolia.id]: http('https://eth-sepolia.g.alchemy.com/v2/4a_fcooQpl1VYmABiq23Tg2BHLmG6I4V'),
+  },
 });
 
 const queryClient = new QueryClient();

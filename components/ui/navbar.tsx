@@ -7,7 +7,7 @@ export const Navbar = () => {
     return (
         <div className="grid grid-cols-5 w-full">
             <div className="lg:flex lg:flex-col items-center col-span-4 lg:col-span-2">
-                <div className="flex lg:justify-start items-center p-3"> 
+                <div className="flex lg:justify-start items-center p-3 pt-8"> 
                     <div className="pr-5"> <Image 
                             src="/assets/degenator-new-logo.png"
                             width={50}
